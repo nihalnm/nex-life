@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nex-Life Transport - Stats Counter Animation</title>
+    <link rel="stylesheet" href="stats_counter_animation.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: #1a3c6e;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .description {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .trigger-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #ff7b25;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .trigger-button:hover {
+            background-color: #e66b15;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nex-Life Transport Company Stats</h1>
+        <p class="description">Click the button below to animate our company statistics</p>
+        
+        <div class="stats-container">
+            <!-- Years in Business Stat -->
+            <div class="stat-item">
+                <div class="stat-circle">
+                    <svg class="stat-svg" viewBox="0 0 160 160">
+                        <circle class="stat-circle-bg" cx="80" cy="80" r="70"></circle>
+                        <circle class="stat-circle-progress" cx="80" cy="80" r="70" style="--final-offset: 308;"></circle>
+                    </svg>
+                    <div class="stat-wheel-spokes">
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                    </div>
+                    <div class="stat-number" data-target="15">0</div>
+                </div>
+                <h3 class="stat-title">Years in Business</h3>
+            </div>
+            
+            <!-- Fleet Size Stat -->
+            <div class="stat-item">
+                <div class="stat-circle">
+                    <svg class="stat-svg" viewBox="0 0 160 160">
+                        <circle class="stat-circle-bg" cx="80" cy="80" r="70"></circle>
+                        <circle class="stat-circle-progress" cx="80" cy="80" r="70" style="--final-offset: 132;"></circle>
+                    </svg>
+                    <div class="stat-wheel-spokes">
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                    </div>
+                    <div class="stat-number" data-target="50">0</div>
+                </div>
+                <h3 class="stat-title">Fleet Size</h3>
+            </div>
+            
+            <!-- Happy Clients Stat -->
+            <div class="stat-item">
+                <div class="stat-circle">
+                    <svg class="stat-svg" viewBox="0 0 160 160">
+                        <circle class="stat-circle-bg" cx="80" cy="80" r="70"></circle>
+                        <circle class="stat-circle-progress" cx="80" cy="80" r="70" style="--final-offset: 44;"></circle>
+                    </svg>
+                    <div class="stat-wheel-spokes">
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                    </div>
+                    <div class="stat-number" data-target="200">0</div>
+                </div>
+                <h3 class="stat-title">Happy Clients</h3>
+            </div>
+            
+            <!-- Daily Trips Stat -->
+            <div class="stat-item">
+                <div class="stat-circle">
+                    <svg class="stat-svg" viewBox="0 0 160 160">
+                        <circle class="stat-circle-bg" cx="80" cy="80" r="70"></circle>
+                        <circle class="stat-circle-progress" cx="80" cy="80" r="70" style="--final-offset: 220;"></circle>
+                    </svg>
+                    <div class="stat-wheel-spokes">
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                        <div class="stat-wheel-spoke"></div>
+                    </div>
+                    <div class="stat-number" data-target="100">0</div>
+                </div>
+                <h3 class="stat-title">Daily Trips</h3>
+            </div>
+        </div>
+        
+        <button class="trigger-button">Animate Stats</button>
+    </div>
+    
+    <script>
+        document.querySelector('.trigger-button').addEventListener('click', function() {
+            // Remove animation classes first
+            document.querySelectorAll('.stat-item').forEach(item => {
+                item.classList.remove('animate');
+            });
+            
+            // Force reflow
+            void document.querySelector('.stats-container').offsetWidth;
+            
+            // Add animation classes
+            document.querySelectorAll('.stat-item').forEach(item => {
+                item.classList.add('animate');
+            });
+            
+            // Animate the numbers
+            document.querySelectorAll('.stat-number').forEach(numberElement => {
+                const target = parseInt(numberElement.getAttribute('data-target'));
+                let current = 0;
+                const increment = Math.ceil(target / 50); // Divide animation into 50 steps
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current > target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    numberElement.textContent = current;
+                }, 40);
+            });
+        });
+        
+        // Trigger animation on page load after a short delay
+        setTimeout(() => {
+            document.querySelector('.trigger-button').click();
+        }, 500);
+    </script>
+</body>
+</html>

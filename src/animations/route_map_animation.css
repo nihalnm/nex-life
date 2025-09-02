@@ -1,0 +1,302 @@
+/* Route Map Animation with Moving Bus */
+
+.route-map-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.map-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #e8e8e8;
+  background-image: 
+    linear-gradient(#ccc 1px, transparent 1px),
+    linear-gradient(90deg, #ccc 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.route-path {
+  position: absolute;
+  width: 90%;
+  height: 10px;
+  top: 50%;
+  left: 5%;
+  background: transparent;
+  border-top: 4px dashed #1a3c6e;
+  z-index: 1;
+}
+
+.route-station {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff7b25;
+  border-radius: 50%;
+  top: calc(50% - 10px);
+  z-index: 2;
+  box-shadow: 0 0 0 4px rgba(255, 123, 37, 0.3);
+}
+
+.station-1 {
+  left: 10%;
+}
+
+.station-2 {
+  left: 30%;
+}
+
+.station-3 {
+  left: 50%;
+}
+
+.station-4 {
+  left: 70%;
+}
+
+.station-5 {
+  left: 90%;
+}
+
+.station-label {
+  position: absolute;
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
+  top: calc(50% + 20px);
+  transform: translateX(-50%);
+}
+
+.label-1 {
+  left: 10%;
+}
+
+.label-2 {
+  left: 30%;
+}
+
+.label-3 {
+  left: 50%;
+}
+
+.label-4 {
+  left: 70%;
+}
+
+.label-5 {
+  left: 90%;
+}
+
+.mini-bus {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  background-color: #ff7b25;
+  border-radius: 5px;
+  top: calc(50% - 15px);
+  left: 5%;
+  z-index: 3;
+  animation: busMove 15s linear infinite;
+}
+
+.mini-bus:before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ff7b25;
+  border-radius: 3px 5px 0 0;
+  top: -5px;
+  right: 5px;
+}
+
+.mini-wheel {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #333;
+  border-radius: 50%;
+  bottom: -4px;
+  animation: wheelSpin 1s linear infinite;
+}
+
+.mini-wheel-front {
+  right: 5px;
+}
+
+.mini-wheel-back {
+  left: 5px;
+}
+
+.city-icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+}
+
+.city-1 {
+  top: calc(50% - 60px);
+  left: 10%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%231a3c6e" d="M12,2L2,12h2v9h16v-9h2L12,2z M12,14c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S13.1,14,12,14z"/></svg>') no-repeat center center;
+}
+
+.city-2 {
+  top: calc(50% - 60px);
+  left: 30%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%231a3c6e" d="M15,11V5l-3-3L9,5v2H3v14h18V11H15z M7,19H5v-2h2V19z M7,15H5v-2h2V15z M11,19H9v-2h2V19z M11,15H9v-2h2V15z M11,11H9V9h2V11z M11,7H9V5h2V7z M15,19h-2v-2h2V19z M15,15h-2v-2h2V15z"/></svg>') no-repeat center center;
+}
+
+.city-3 {
+  top: calc(50% - 60px);
+  left: 50%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%231a3c6e" d="M12,2C8.13,2,5,5.13,5,9c0,5.25,7,13,7,13s7-7.75,7-13C19,5.13,15.87,2,12,2z M12,11.5c-1.38,0-2.5-1.12-2.5-2.5s1.12-2.5,2.5-2.5s2.5,1.12,2.5,2.5S13.38,11.5,12,11.5z"/></svg>') no-repeat center center;
+}
+
+.city-4 {
+  top: calc(50% - 60px);
+  left: 70%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%231a3c6e" d="M4,10v7h3v-7H4z M10,10v7h3v-7H10z M2,22h19v-3H2V22z M16,10v7h3v-7H16z M11.5,1L2,6v2h19V6L11.5,1z"/></svg>') no-repeat center center;
+}
+
+.city-5 {
+  top: calc(50% - 60px);
+  left: 90%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%231a3c6e" d="M12,7V3H2v18h20V7H12z M6,19H4v-2h2V19z M6,15H4v-2h2V15z M6,11H4V9h2V11z M6,7H4V5h2V7z M10,19H8v-2h2V19z M10,15H8v-2h2V15z M10,11H8V9h2V11z M10,7H8V5h2V7z M20,19h-8v-2h2v-2h-2v-2h2v-2h-2V9h8V19z M18,11h-2v2h2V11z M18,15h-2v2h2V15z"/></svg>') no-repeat center center;
+}
+
+.pulse-effect {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid #ff7b25;
+  top: calc(50% - 10px);
+  animation: pulse 2s infinite;
+  opacity: 0;
+}
+
+.pulse-1 {
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.pulse-2 {
+  left: 30%;
+  animation-delay: 3s;
+}
+
+.pulse-3 {
+  left: 50%;
+  animation-delay: 6s;
+}
+
+.pulse-4 {
+  left: 70%;
+  animation-delay: 9s;
+}
+
+.pulse-5 {
+  left: 90%;
+  animation-delay: 12s;
+}
+
+/* Keyframe Animations */
+@keyframes busMove {
+  0% {
+    left: 5%;
+  }
+  20% {
+    left: 10%;
+  }
+  25% {
+    left: 10%;
+  }
+  40% {
+    left: 30%;
+  }
+  45% {
+    left: 30%;
+  }
+  60% {
+    left: 50%;
+  }
+  65% {
+    left: 50%;
+  }
+  80% {
+    left: 70%;
+  }
+  85% {
+    left: 70%;
+  }
+  95% {
+    left: 90%;
+  }
+  100% {
+    left: 95%;
+  }
+}
+
+@keyframes wheelSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .route-map-container {
+    height: 300px;
+  }
+  
+  .station-label {
+    font-size: 10px;
+  }
+  
+  .city-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .route-map-container {
+    height: 200px;
+  }
+  
+  .station-label {
+    display: none;
+  }
+  
+  .city-icon {
+    width: 20px;
+    height: 20px;
+    top: calc(50% - 40px);
+  }
+}
+
+/* Made with Bob */

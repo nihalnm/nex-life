@@ -1,0 +1,521 @@
+/* Stats Counter Animation with Wheel Design */
+
+.stats-section {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.stats-item {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.wheel-counter {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.wheel-outer {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 15px solid #1a3c6e;
+  box-sizing: border-box;
+}
+
+.wheel-inner {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.wheel-spoke {
+  position: absolute;
+  width: 4px;
+  height: 75px;
+  background-color: #1a3c6e;
+  top: 15px;
+  left: 88px;
+  transform-origin: bottom center;
+}
+
+.spoke-1 {
+  transform: rotate(0deg);
+}
+
+.spoke-2 {
+  transform: rotate(45deg);
+}
+
+.spoke-3 {
+  transform: rotate(90deg);
+}
+
+.spoke-4 {
+  transform: rotate(135deg);
+}
+
+.spoke-5 {
+  transform: rotate(180deg);
+}
+
+.spoke-6 {
+  transform: rotate(225deg);
+}
+
+.spoke-7 {
+  transform: rotate(270deg);
+}
+
+.spoke-8 {
+  transform: rotate(315deg);
+}
+
+.counter-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ff7b25;
+  z-index: 3;
+}
+
+.counter-label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* Animation for the wheel */
+.wheel-animation {
+  animation: wheelRotate 20s linear infinite;
+}
+
+.wheel-animation-reverse {
+  animation: wheelRotateReverse 20s linear infinite;
+}
+
+/* Counting Animation */
+.counting-animation {
+  display: inline-block;
+  opacity: 0;
+  animation: countUp 2s forwards;
+  animation-delay: 0.5s;
+}
+
+/* Variant Styles */
+.stats-item.variant-1 .wheel-outer {
+  border-color: #1a3c6e;
+}
+
+.stats-item.variant-1 .wheel-spoke {
+  background-color: #1a3c6e;
+}
+
+.stats-item.variant-1 .counter-value {
+  color: #ff7b25;
+}
+
+.stats-item.variant-2 .wheel-outer {
+  border-color: #ff7b25;
+}
+
+.stats-item.variant-2 .wheel-spoke {
+  background-color: #ff7b25;
+}
+
+.stats-item.variant-2 .counter-value {
+  color: #1a3c6e;
+}
+
+.stats-item.variant-3 .wheel-outer {
+  border-color: #28a745;
+}
+
+.stats-item.variant-3 .wheel-spoke {
+  background-color: #28a745;
+}
+
+.stats-item.variant-3 .counter-value {
+  color: #333;
+}
+
+.stats-item.variant-4 .wheel-outer {
+  border-color: #6c757d;
+}
+
+.stats-item.variant-4 .wheel-spoke {
+  background-color: #6c757d;
+}
+
+.stats-item.variant-4 .counter-value {
+  color: #ff7b25;
+}
+
+/* Highlight Animation */
+.highlight-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(255, 123, 37, 0.1);
+  transform: scale(0.8);
+  opacity: 0;
+  animation: highlightPulse 3s ease-in-out infinite;
+}
+
+/* Keyframe Animations */
+@keyframes wheelRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wheelRotateReverse {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes countUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes highlightPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .stats-section {
+    padding: 50px 0;
+  }
+  
+  .stats-container {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 992px) {
+  .stats-section {
+    padding: 45px 0;
+  }
+  
+  .stats-container {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .stats-item {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .wheel-counter {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .wheel-outer {
+    width: 160px;
+    height: 160px;
+    border-width: 13px;
+  }
+  
+  .wheel-inner {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .wheel-spoke {
+    height: 67px;
+    left: 78px;
+  }
+  
+  .counter-value {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-section {
+    padding: 40px 0;
+  }
+  
+  .stats-container {
+    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+  
+  .stats-item {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .wheel-counter {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .wheel-outer {
+    width: 150px;
+    height: 150px;
+    border-width: 12px;
+  }
+  
+  .wheel-inner {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .wheel-spoke {
+    height: 62px;
+    left: 73px;
+  }
+  
+  .counter-value {
+    font-size: 2rem;
+  }
+  
+  .counter-label {
+    font-size: 1rem;
+  }
+  
+  /* Optimize animations for performance */
+  .wheel-animation {
+    animation: wheelRotate 30s linear infinite;
+  }
+  
+  .wheel-animation-reverse {
+    animation: wheelRotateReverse 30s linear infinite;
+  }
+}
+
+@media (max-width: 576px) {
+  .stats-section {
+    padding: 35px 0;
+  }
+  
+  .stats-container {
+    gap: 15px;
+    padding: 0 10px;
+  }
+  
+  .stats-item {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .wheel-counter {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .wheel-outer {
+    width: 130px;
+    height: 130px;
+    border-width: 10px;
+  }
+  
+  .wheel-inner {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .wheel-spoke {
+    height: 55px;
+    width: 3px;
+    left: 63.5px;
+  }
+  
+  .counter-value {
+    font-size: 1.8rem;
+  }
+  
+  .counter-label {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-container {
+    gap: 12px;
+  }
+  
+  .stats-item {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .wheel-counter {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .wheel-outer {
+    width: 120px;
+    height: 120px;
+    border-width: 10px;
+  }
+  
+  .wheel-inner {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .wheel-spoke {
+    height: 50px;
+    width: 3px;
+    left: 58.5px;
+  }
+  
+  .counter-value {
+    font-size: 1.5rem;
+  }
+  
+  .counter-label {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .stats-section {
+    padding: 30px 0;
+  }
+  
+  .stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .stats-item {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .wheel-counter {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .wheel-outer {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .wheel-inner {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .wheel-spoke {
+    height: 55px;
+    left: 63.5px;
+  }
+}
+
+/* JavaScript Counter Animation Support Classes */
+.js-counter {
+  display: inline-block;
+}
+
+.counter-wrapper {
+  position: relative;
+  z-index: 3;
+}
+
+/* Additional Animation for Entrance */
+.stats-item {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.stats-item.animate {
+  animation: statsItemEntrance 0.8s forwards;
+}
+
+.stats-item:nth-child(1).animate {
+  animation-delay: 0.1s;
+}
+
+.stats-item:nth-child(2).animate {
+  animation-delay: 0.3s;
+}
+
+.stats-item:nth-child(3).animate {
+  animation-delay: 0.5s;
+}
+
+.stats-item:nth-child(4).animate {
+  animation-delay: 0.7s;
+}
+
+@keyframes statsItemEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Made with Bob */
